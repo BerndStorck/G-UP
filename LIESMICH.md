@@ -1,6 +1,6 @@
-# g-up - Update tool for Debian / Ubuntu
+# g-up - Aktualisierungsprogramm für Debian / Ubuntu
 
-**g-up vereinfacht es für den Anwender von der Kommandozeile aus ein Debian-basiertes Linux-System wie Ubuntu oder Linux Lite zu aktualisieren.**
+**g-up vereinfacht es für den Anwender von der Kommandozeile aus ein Debian-basiertes Linux-System wie Ubuntu oder Linux Lite zu aktualisieren, wenn ihr System das Programm `apt-get` benutzt.**
 
 ## Lizenz
 
@@ -8,7 +8,7 @@ g-up ist freie Software. Das Skript kann unter Einhaltung der Vorgaben der GNU G
 
 ## Installation
 
-Entpacken Sie das "go-up"-Bash-Skript aus dem Zip-Archiv und verschieben Sie es entweder in eines der Verzeichnisse `/usr/local/bin` oder `~/bin`.
+Entpacken Sie das "g-up"-Bash-Skript aus dem Zip-Archiv und verschieben Sie es entweder in eines der Verzeichnisse `/usr/local/bin` oder `~/bin`.
 
 Hinweis: Skripte, die aus dem Verzeichnis `~/bin` ausgeführt werden, können nicht mit dem Präfix '`sudo`' gestartet werden, da das System sie nicht finden würde. Wer dieses Skript aus einem Skript für cron-, anacron- oder systemd-Timer aufrufen möchte, sollte es in `/usr/local/bin` ablegen. Dies ist auch die beste Vorgehensweise, wenn es mehr als ein Administratorenkonto auf dem Rechner gibt.
 
