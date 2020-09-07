@@ -100,3 +100,6 @@ Kodiert von Bernd Storck, https://facebook.com/BStLinux/.
 - Komplette Veränderung der zentralen Ablaufsteuerung.
 - Bemühungen, das Skript ein wenig schneller zu machen: Ein Funktionsaufruf wurde entfernt, geringfügige Code-Redundanz zugunsten der Ausführungsgeschwindigkeit, Verminderung der Bildschirmausgaben von apt-get.
 - Bug fix: Fehlerhafte Prüfung, ob der Pager less installiert ist, durch eine eigene Funktion ersetzt, die überprüft, ob ein bekannter Pager installiert ist.
+
+## Haftungsauschluß
+Kurz und knapp: Ich hafte für nichts; ob und wie Sie das Programm benutzten ist Ihre Sache. Das Programm beantwortet insbesonere alle Rückfragen automatisch mit "Ja". 
