@@ -3,26 +3,12 @@
 **g-up is a tool that automates the update procedure for Debian based**
 **Linux systems like Ubuntu or Linux Lite.**
 
-## History
+## License
 
-This script was derived from Joe Collins (ezeelinux.com) scripts `up 1.0` and `up 1.2` . 
-
-Collins has shown the version 1.0 at the end of his Youtube-Video "A Beginner's Introduction to BASH Shell Scripting" at https://www.youtube.com/watch?v=_n5ZegzieSQ (2018-08-09). Version 1.2 can be downloaded from Github: https://codeload.github.com/EzeeLinux/up-debian_ubuntu_update_tool/zip/master 
-
-### Differences between g-up and up
-
-`g-up` is nearly a complete reimplementation or at least a total code review and enhancement of `up`.
-
-- Multilanguage support added: Screen messages in German and English.
-
-- Complete change of the main control structure.
-- Some attempts to speed up the script al little: One function call removed, slightly code redundancy in favour of speed, reduction of apt-get's screen output.
-- Additional option for clean only the Apt-Cache.
-
-- Additional short options `-h` for `--help` and `-c` for `--clean`, `-r` for `--remove`.
-
-- Bug fix: Wrong check for existense of the pager less removed and replaced by a function, which checks the existense of a known pager.
-- Usage of the pager depending of terminal height and text to display. 
+go-up is free software. You can redistribute it and/or modify it under the
+ terms of the GNU General Public License Version 2.0. as published by
+ the Free Software Foundation. A copy of the GNU GPL 2.0 is provided with the
+software.
 
 ## Installation
 
@@ -40,6 +26,7 @@ Note: scripts that are run from the `~/bin` directory cannot be prefixed with
 
 
 ### Run without Options
+
 Running `g-up` with no options will update the apt cache and then perform a full distribution update automatically:
     
 
@@ -88,9 +75,30 @@ Write only the version number:
 g-up -#
 ```
 
-Disclaimer:
+## History
 
-THIS SOFTWARE IS PROVIDED BY EZEELINUX “AS IS” AND ANY EXPRESS OR IMPLIED
+I developed `g-up` based on versions 1.0 and 1.2 of the bash script `up` by Joe Collins (ezeelinux.com). 
+
+Collins has shown the version 1.0 at the end of his Youtube-Video "A Beginner's Introduction to BASH Shell Scripting" at https://www.youtube.com/watch?v=_n5ZegzieSQ (2018-08-09). Version 1.2 can be downloaded from Github: https://codeload.github.com/EzeeLinux/up-debian_ubuntu_update_tool/zip/master 
+
+Coded by Bernd Storck, https://facebook.com/BStLinux/.
+
+### Differences between g-up and up
+
+`g-up` is nearly a complete reimplementation or at least a total code review and enhancement of `up`.
+
+- Multilanguage support added: Screen messages in German and English.
+- Complete change of the main control structure.
+- Some attempts to speed up the script al little: One function call removed, slightly code redundancy in favour of speed, reduction of apt-get's screen output.
+- Additional option for clean only the Apt-Cache.
+- Additional short options `-h` for `--help` and `-c` for `--clean`, `-r` for `--remove`.
+- Additional options to request the script's version.
+- Bug fix: Wrong check for existense of the pager less removed and replaced by a function, which checks the existense of a known pager.
+- Usage of the pager depending of terminal height and text to display. 
+
+## Disclaimer
+
+THIS SOFTWARE IS PROVIDED “AS IS” AND ANY EXPRESS OR IMPLIED
 WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
 MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
 EVENT SHALL EZEELINUX BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
@@ -100,9 +108,3 @@ BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
 IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
-## License
-
-go-up is free software. You can redistribute it and/or modify it under the
- terms of the GNU General Public License Version 2.0. as published by
- the Free Software Foundation. A copy of the GNU GPL 2.0 is provided with the
-software.
