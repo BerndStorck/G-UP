@@ -26,7 +26,7 @@ Collins has shown the version 1.0 at the end of his Youtube-Video "A Beginner's 
 
 ## Installation
 
-Unzip the "go-up" bash script from the zip archive and move it to either
+Unzip the "g-up" bash script from the zip archive and move it to either
  `/usr/local/bin` or `~/bin`. You can either do this from a command line or simply
  drag the file out of Archive Manager to wherever you'd like it to go.
 
@@ -40,11 +40,11 @@ Note: scripts that are run from the `~/bin` directory cannot be prefixed with
 
 
 ### Run without Options
-Running `up` with no options will update the apt cache and then perform a full distribution update automatically:
+Running `g-up` with no options will update the apt cache and then perform a full distribution update automatically:
     
 
 ```bash
-up
+g-up
 ```
 
 ### --clean
@@ -53,7 +53,7 @@ Adding the "`--clean`" option will invoke the apt commands to search for and rem
     
 
 ```bash
-up --clean
+g-up --clean
 ```
 
 ### --remove 
@@ -61,7 +61,7 @@ up --clean
 The `--remove` option only removes orphaned packages, leaving the apt cache alone: 
 
 ```bash
-up --remove
+g-up --remove
 ```
 
 ### --help
@@ -69,7 +69,7 @@ up --remove
 Show the help page:
 
 ```bash
-up --help
+g-up --help
 ```
 
 ### --version
