@@ -5,7 +5,7 @@
 
 ## License
 
-go-up is free software. You can redistribute it and/or modify it under the
+g-up is free software. You can redistribute it and/or modify it under the
  terms of the GNU General Public License Version 2.0. as published by
  the Free Software Foundation. A copy of the GNU GPL 2.0 is provided with the
 software.
@@ -94,17 +94,8 @@ Coded by Bernd Storck, https://facebook.com/BStLinux/.
 - Additional short options `-h` for `--help` and `-c` for `--clean`, `-r` for `--remove`.
 - Additional options to request the script's version.
 - Bug fix: Wrong check for existense of the pager less removed and replaced by a function, which checks the existense of a known pager.
-- Usage of the pager depending of terminal height and text to display. 
+- Usage of the pager depending on terminal height and text to display. 
 
 ## Disclaimer
 
-THIS SOFTWARE IS PROVIDED “AS IS” AND ANY EXPRESS OR IMPLIED
-WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
-EVENT SHALL EZEELINUX BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
-BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
-IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-POSSIBILITY OF SUCH DAMAGE.
+This software is provided “as is” and any express or implied warranties, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall the program author be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of use, data, or profits; or business interruption) however caused and on any theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of this software, even if advised of the possibility of such damage.
