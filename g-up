@@ -1,0 +1,235 @@
+#! /bin/bash
+#
+# g-up 1.0.0, 2020-09-07
+#
+# Script for Debian system updates.
+#
+# ORIGIN: Variation of Joe Collins script "up 1.0" shown in a
+# Youtube video: "A Beginner's Introduction to BASH Shell Scripting"
+# https://www.youtube.com/watch?v=_n5ZegzieSQ (2018-08-09)
+# and his "up 1.2" from GitHub.
+#
+# This script supports German and English language.
+# by Bernd Storck: https://www.facebook.com/BStLinux/
+#
+
+PROG_NAME="g-up"
+PROG_VERSION="1.0.0"
+SCRIPT_NAME="$(basename "$0")"
+PAGER="cat"  ## Default, if no pager will be found.
+
+if [ "${LANG::2}" == "de" ]; then
+	UILANG="Deutsch"
+	PROG_TITLE="$PROG_NAME -- Debian/Ubuntu Aktualisierungsprogramm (Version $PROG_VERSION)"
+	UPDATE_MSG="Ein komplettes System-Update wird gestartet…"
+	CLEAN_MSG="Lösche Pakete, die nicht bezogen werden können, aus dem Apt-Cache…"
+	REMOVE_MSG="Verweiste Pakete werden entfernt…"
+	ERROR_MSG="Aufruf-Fehler: Unzulässige Option '$1'.\n'$SCRIPT_NAME --help' zeigt alle zulässigen Optionen."
+	EXIT_MSG="Das System wurde aktualisiert."
+else
+	UILANG="English"
+	PROG_TITLE="$PROG_NAME -- Debian/Ubuntu Update Tool ($PROG_VERSION)"
+	UPDATE_MSG="Starting full system update…"
+	CLEAN_MSG="Removing apt cache packages that can no longer be downloaded…"
+	REMOVE_MSG="Removing orphaned packages…"
+	ERROR_MSG="$SCRIPT_NAME Error: Invalid argument '$1'. Try '$SCRIPT_NAME --help' for more info."
+	EXIT_MSG="Update Complete"
+fi
+
+set -e  ## Bash will quit and exit the script on every error.
+
+function get_terminal_height {
+# Terminal height is needed to decide if a pager should be used to list output.
+	for i in tput stty
+	do
+		if [ "$(which ${i})" ]; then
+			LINECOUNTER="$i"
+			break
+		fi
+	done
+	case "$LINECOUNTER" in
+		tput)
+			TERMINAL_HEIGHT=$(tput lines)
+			;;
+		stty)
+			TERMINAL_HEIGHT=$(stty size | cut -d" " -f1)
+			;;
+		*)
+			TERMINAL_HEIGHT=$(( QUANTITY_OF_LINES + 1 )) 	# Suppresses every call of a pager,
+			# cause the value is greater than the amount of lines.
+			;;
+	esac
+}
+
+
+function setPager {
+# Defines the pager program to use.
+	for i in most less more pg
+	do
+		if [ "$(which ${i})" ]; then
+			PAGER="$i"
+			break
+		fi
+	done
+}
+
+function update {
+	echo -e "\n$PROG_TITLE\n"
+	sudo true
+	echo "$UPDATE_MSG"
+	sudo apt-get -q update && sudo apt-get -q -yy dist-upgrade
+}
+
+function remove {
+	echo "$REMOVE_MSG"
+	sudo apt autoremove -yy
+}
+
+function clean {
+	echo "$REMOVE_MSG"
+	sudo apt-get -q autoremove -yy
+	echo "$CLEAN_MSG"
+	sudo apt-get -q autoclean
+}
+
+function up-hilfe {
+ HILFE_TEXT="
+ $PROG_NAME (Version $PROG_VERSION) - Upgrade für Debian-gestützte Systeme.
+
+ AUFRUFSYNTAX
+  $SCRIPT_NAME [--clean|--remove|--clean-only|--help]
+
+ AUFRUFVARIANTEN
+  $SCRIPT_NAME
+
+      Paket-Cache aktualisieren und ein komplettes Upgrade starten.
+
+  $SCRIPT_NAME --clean  # Oder kürzer \"-c\"
+
+      Das System komplett aktualisieren, danach aus dem lokalen Cache
+      Pakete entfernt, die nicht mehr in den Repositories vorkommen,
+      außerdem verweiste, von keinem Programm benötigte Pakete entfernt.
+
+  $SCRIPT_NAME --remove # Oder kürzer: \"-r\"
+
+      Das System komplett aktualisieren und danach verweiste Pakete
+      entfernen, ohne den Apt-Cache zu verändern.
+
+  $SCRIPT_NAME --clean-only
+
+      Kein Programm herunterladen und installieren, nur überflüssige
+      Pakete entfernen, wie es auch \"--clean\" tut.
+
+  $SCRIPT_NAME --hilf
+
+      Zeigt diese Hilfe an.
+
+  $SCRIPT_NAME --version  # Versionsinfo anzeigen
+  $SCRIPT_NAME -#         # Nur die Versionsnummer ausgeben.
+
+ Abgeleitet von Joe Collins (ezeelinux.com) \"up 1.2\"; kodiert von Bernd
+ Storck, facebook.com/BStLinux/ (GNU/General Public License version 2.0)
+"
+ QUANTITY_OF_LINES="$(wc -l <<< "$HILFE_TEXT")"
+ get_terminal_height   # sets the value of the script global var TERNINAL_HEIGHT.
+ if [[ "$QUANTITY_OF_LINES" -gt $(( TERMINAL_HEIGHT - 1 )) ]]; then
+	setPager
+ fi
+ $PAGER <<< "$HILFE_TEXT"
+}
+
+function up-help {
+ setPager
+ HELP_TEXT="
+ $PROG_NAME ($PROG_VERSION)
+
+ g-up is a script that automates the update procedure for Debian and
+ Ubuntu based Linux systems.
+
+ COMMANDS
+  $SCRIPT_NAME     # Full system update.
+
+      Running \"$SCRIPT_NAME\" with no options will update the apt cache
+      and then perform a full distribution update automatically.
+
+  $SCRIPT_NAME --clean    # Full system update with full cleanup
+
+      Adding the \"--clean\" option will invoke the apt commands to
+      search for and remove locally cached packages that are no longer
+      in the repositories and remove orphaned packages that are no
+      longer needed by programs.
+
+  $SCRIPT_NAME --clean-only    # Only cleanup
+
+      Adding the \"--clean-only\" option will not upgrade system, but
+      will remove locally cached packages that are no longer in the
+      repositories and remove orphaned packages that are no longer
+      needed by programs.
+
+  $SCRIPT_NAME --remove  # Full system update with orphaned packages removed.
+
+      The \"--remove\" option only removes orphaned packages, leaving
+      the apt cache alone.
+
+  $SCRIPT_NAME --help    # Shows this help page.
+
+  $SCRIPT_NAME --version  # Display version info.
+  $SCRIPT_NAME -#         # Write only the version number.
+
+ Based on \"up 1.2\" by Joe Collins (ezeelinux.com). This derivate by Bernd
+ Storck, facebook.com/BStLinux. (GNU/General Public License version 2.0)
+
+"
+ QUANTITY_OF_LINES="$(wc -l <<< "$HELP_TEXT")"
+ get_terminal_height   # sets the value of the script global var TERNINAL_HEIGHT.
+ if [[ "$QUANTITY_OF_LINES" -gt $(( TERMINAL_HEIGHT - 1 )) ]]; then
+	setPager
+ fi
+ $PAGER <<< "$HELP_TEXT"
+}
+
+## main ###################
+if [ "$#" -eq 0 ]; then  # Default, if no option and argument is used
+	update
+else
+	case "$1" in
+		--clean|-c) 	# Update, remove orphaned packages and clean apt cache.
+			update
+			clean
+			;;
+		--remove|-r) 	# Update and remove orphaned packages.
+			update
+			remove
+			;;
+		--clean-only)
+			sudo true
+			clean
+			;;
+		--hilf|--hilfe|-hilf)
+			up-hilfe
+			exit 0
+			;;
+		--help|-h|-help)
+			if [ "$UILANG" == "Deutsch" ]; then
+				up-hilfe
+			else
+				up-help
+			fi
+			exit 0
+			;;
+		--version|-\#)
+			if [ "$1" = "--version" ]; then
+				echo -n "$PROG_NAME "
+			fi
+			echo "$PROG_VERSION"
+			exit 0
+			;;
+		*) 		# If an invalid argument was used
+			echo -e "$ERROR_MSG" >&2
+			exit 1
+			;;
+	esac
+fi
+
+echo "$EXIT_MSG"
+exit 0
