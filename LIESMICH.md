@@ -14,6 +14,10 @@ Hinweis: Skripte, die aus dem Verzeichnis `~/bin` ausgeführt werden, können ni
 
 ## Bedienung
 
+### Skript-Name - einen kürzeren Namen verwenden
+
+Ich habe dieses Skript "g-up" genannt, um Verwechslungen mit Joe Collins Skript "up" und dessen Versionen zu vermeiden. Aber offensichtlich wäre es bequemer, den kürzeren Namen zu benutzen. Sie müssen dazu keinen Alias anlegen, denn es steht Ihnen frei, das Skript auf Ihrem System in "up" umzubenennen. **Das Skript "g-up" wird sich in seinen Hilfeseiten auf den aktuellen Namen beziehen, den Sie dem Skript gegeben haben.**
+
 ### Aufrufsyntax
 
     g-up [--clean|--remove|--clean-only|--help]
@@ -78,6 +82,14 @@ Nur die Versionsnummer ausgeben:
 ```bash
 g-up -#
 ```
+
+#### Kurzformen einiger Optionen
+
+| Lange Option iḿ GNU-Stil | Kurze Entsprechung |
+| ------------------------ | ------------------ |
+| --clear                  | -c                 |
+| --resume                 | -r                 |
+| --help                   | -h                 |
 
 ## Entstehungsgeschichte
 
