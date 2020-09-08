@@ -22,10 +22,16 @@ Note: scripts that are run from the `~/bin` directory cannot be prefixed with
  This is also the best practice if there are more than one administrator
  accounts on the machine.
 
-## Command Options
+## Usage
+
+### Script name - use a shorter name
+
+The script is named "g-up" to prevent confusion with Joe Collins script "up" and its versions. But obviously it might be more convenient to have the shorter name to start it. You have not to create an alias to achieve this, you are free to rename the script on your system to "up". **The script "g-up" will refer to the current name you have given the script in his help pages.**
+
+### Command Options
 
 
-### Run without Options
+#### Run without Options
 
 Running `g-up` with no options will update the apt cache and then perform a full distribution update automatically:
     
@@ -34,7 +40,7 @@ Running `g-up` with no options will update the apt cache and then perform a full
 g-up
 ```
 
-### --clean
+#### --clean
 
 Adding the "`--clean`" option will invoke the apt commands to search for and remove locally cached packages that are no longer in the repositories and remove orphaned packages that are no longer needed by programs: 
     
@@ -43,7 +49,7 @@ Adding the "`--clean`" option will invoke the apt commands to search for and rem
 g-up --clean
 ```
 
-### --remove 
+#### --remove 
 
 The `--remove` option only removes orphaned packages, leaving the apt cache alone: 
 
@@ -51,7 +57,7 @@ The `--remove` option only removes orphaned packages, leaving the apt cache alon
 g-up --remove
 ```
 
-### --clean-only
+#### --clean-only
 
 No need to download and install a program, just remove superfluous packages like `--clean` does:
 
@@ -59,7 +65,7 @@ No need to download and install a program, just remove superfluous packages like
 g-up --clean-only
 ```
 
-### --help
+#### --help
 
 Show the help page:
 
@@ -67,7 +73,15 @@ Show the help page:
 g-up --help
 ```
 
-### --version
+#### --hilf
+
+`g-up` was written to help German speaking users to use Linux in a simple way. Normally `g-up` tries to identify the standard language automatically, but the option `--hilf` passes over this automatic language selection and calls directly the German help page. (*Hilfe* is the German noun for *help* and also the way someone would call for help in dangerous situations. *hilf* is the imperative form of the German verb for *to help*. )
+
+```bash
+g-up --hilf
+```
+
+#### --version
 
 Display version info:
 
@@ -75,13 +89,21 @@ Display version info:
 g-up --version  
 ```
 
-### -#
+#### -#
 
 Write only the version number:
 
 ```bash
 g-up -#
 ```
+
+#### Table of short options
+
+| GNU style long option | Short equivalent |
+| --------------------- | ---------------- |
+| --clear               | -c               |
+| --resume              | -r               |
+| --help                | -h               |
 
 ## History
 
