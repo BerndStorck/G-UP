@@ -51,6 +51,14 @@ The `--remove` option only removes orphaned packages, leaving the apt cache alon
 g-up --remove
 ```
 
+### --clean-only
+
+No need to download and install a program, just remove superfluous packages like `--clean` does:
+
+```bash
+g-up --clean-only
+```
+
 ### --help
 
 Show the help page:
