@@ -1,6 +1,6 @@
 #! /bin/bash
 #
-# g-up, 2020-09-07, 2020-09-22
+# g-up, 2020-09-07, 2020-09-22, 2020-10-21
 #
 # Script for Debian system updates.
 #
@@ -14,8 +14,8 @@
 #
 
 PROG_NAME="g-up"
-PROG_VERSION="1.0.1"
-SCRIPT_NAME="$(basename "$0")"
+PROG_VERSION="1.0.2"
+SCRIPT_NAME="${0##*/}"   ## was: "$(basename "$0")"
 PAGER="cat"  ## Default, if no pager will be found.
 
 if [ "${LANG::2}" == "de" ]; then
